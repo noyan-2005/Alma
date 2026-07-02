@@ -50,6 +50,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     const {
         food_name: food_name,
+        category: category,
         calories_per_100: calories_per_100,
         protein_g_per_100: protein_g_per_100,
         carbs_g_per_100: carbs_g_per_100,
@@ -66,6 +67,7 @@ router.post("/", async (req, res) => {
     // Validate data
     const foodSchema = Joi.object({
         food_name: Joi.string().required(),
+        category: Joi.string().required(),
         calories_per_100: Joi.number().required(),
         protein_g_per_100: Joi.number().required(),
         carbs_g_per_100: Joi.number().required(),
@@ -81,6 +83,7 @@ router.post("/", async (req, res) => {
     });
     const { value, error } = foodSchema.validate({
         food_name: food_name,
+        category: category,
         calories_per_100: calories_per_100,
         protein_g_per_100: protein_g_per_100,
         carbs_g_per_100: carbs_g_per_100,
@@ -135,6 +138,7 @@ router.put("/:id", async (req, res) => {
     }
     const {
         food_name: food_name,
+        category: category,
         calories_per_100: calories_per_100,
         protein_g_per_100: protein_g_per_100,
         carbs_g_per_100: carbs_g_per_100,
@@ -151,6 +155,7 @@ router.put("/:id", async (req, res) => {
     // Validate data
     const foodSchema = Joi.object({
         food_name: Joi.string(),
+        category: Joi.string(),
         calories_per_100: Joi.number(),
         protein_g_per_100: Joi.number(),
         carbs_g_per_100: Joi.number(),
@@ -166,6 +171,7 @@ router.put("/:id", async (req, res) => {
     });
     const { value, error } = foodSchema.validate({
         food_name: food_name,
+        category: category,
         calories_per_100: calories_per_100,
         protein_g_per_100: protein_g_per_100,
         carbs_g_per_100: carbs_g_per_100,
