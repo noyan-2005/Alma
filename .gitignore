@@ -3,8 +3,4 @@ backend/node_modules/
 frontend/node_modules/
 
 # ENV File
-backend/.env
-frontend/.env
-
-backend/.env.example
-frontend/.env.example
+.env
