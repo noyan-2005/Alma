@@ -50,7 +50,7 @@ app.get("/health", (req, res) => {
 // Start server
 async function startServer() {
     try {
-        await database.sync({ force: true });
+        await database.sync();
         app.listen(5000, () => {
             console.log("🚀 Server running at http://localhost:5000 ...");
             console.log("- Check API Health\t:\t/health");
