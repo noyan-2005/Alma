@@ -9,11 +9,13 @@ const router = express.Router();
 // Get food detail
 router.get("/", async (req, res) => {
     // Perform normal search, or search by either food name or category or both.
-    //TODO: Search by category
     const queryObject = {};
-    const { foodName, page = 1 } = req.query;
+    const { foodName, category, page = 1 } = req.query;
     if (foodName) {
         queryObject.food_name = { [Op.like]: `%${foodName}%` };
+    }
+    if (category) {
+        queryObject.category = { [Op.like]: `%${category}%` };
     }
     const pageNumber = +page;
     const limit = 20;

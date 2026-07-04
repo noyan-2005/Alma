@@ -131,14 +131,20 @@ const BACKEND_FOODS_API = "http://localhost:5000/foods";
 
 const foodsTableBody = document.getElementById("foodsTableBody");
 
-// Fetch users from backend
+// Fetch foods from backend
+let currentFoodPage = 1;
+let totalFoodPages = 1;
+
 async function loadFoods(page = 1) {
     try {
         const res = await fetch(`${BACKEND_FOODS_API}?page=${page}`);
         if (!res.ok) throw new Error("Failed to fetch foods");
 
         const data = await res.json();
+        currentFoodPage = data.page;
+        totalFoodPages = data.totalPages;
         renderFoods(data.foods || []);
+        renderFoodsPagination();
     } catch (error) {
         console.error(error);
         foodsTableBody.innerHTML = `
@@ -174,4 +180,49 @@ function renderFoods(foods) {
         `,
         )
         .join("");
+}
+
+// Dynamic pagination buttons
+async function changeFoodPage(page) {
+    if (page < 1 || page > totalFoodPages) return;
+    await loadFoods(page);
+}
+
+const foodsPagination = document.getElementById("foodsPagination");
+
+function renderFoodsPagination() {
+    let html = "";
+
+    html += `
+        <button
+            class="px-3 py-2 mt-2 rounded-xl text-white ${currentFoodPage === 1 ? "bg-slate-400 cursor-not-allowed" : "bg-purple-600"}"
+            ${currentFoodPage === 1 ? "disabled" : ""}
+            onclick="changeFoodPage(${currentFoodPage - 1})"
+        >
+            Prev
+        </button>
+    `;
+
+    for (let i = 1; i <= totalFoodPages; i++) {
+        html += `
+            <button
+                class="hover:bg-purple-900 px-3 py-2 mx-1 rounded-xl text-white ${i === currentFoodPage ? "bg-purple-800" : "bg-purple-600"}"
+                onclick="changeFoodPage(${i})"
+            >
+                ${i}
+            </button>
+        `;
+    }
+
+    html += `
+        <button
+            class="px-3 py-2 mx-1 rounded-xl text-white ${currentFoodPage === totalFoodPages ? "bg-slate-400 cursor-not-allowed" : "bg-purple-600"}"
+            ${currentFoodPage === totalFoodPages ? "disabled" : ""}
+            onclick="changeFoodPage(${currentFoodPage + 1})"
+        >
+            Next
+        </button>
+    `;
+
+    foodsPagination.innerHTML = html;
 }
