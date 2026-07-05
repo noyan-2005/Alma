@@ -3,17 +3,18 @@ import express from "express";
 import Joi from "joi";
 import bcrypt from "bcrypt";
 import User from "../models/user.js";
+import { verifyToken } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
 // Get all users (admin only)
-router.get("/", async (req, res) => {
+router.get("/", verifyToken, async (req, res) => {
     const allUsers = await User.findAll();
     res.status(200).json(allUsers);
 });
 
 // Get a specific user
-router.get("/:id", async (req, res) => {
+router.get("/:id", verifyToken, async (req, res) => {
     const user = await User.findByPk(req.params.id);
     if (!user) {
         res.status(404).json({
@@ -26,7 +27,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Edit user info
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyToken, async (req, res) => {
     const user = await User.findByPk(req.params.id);
     if (!user) {
         res.status(404).json({
@@ -86,7 +87,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // Delete user
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
     const user = await User.findByPk(req.params.id);
     if (!user) {
         res.status(404).json({

@@ -3,11 +3,12 @@ import express from "express";
 import Joi from "joi";
 import { Op } from "sequelize";
 import Food from "../models/food.js";
+import { verifyToken } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
 // Get food detail
-router.get("/", async (req, res) => {
+router.get("/", verifyToken, async (req, res) => {
     // Perform normal search, or search by either food name or category or both.
     const queryObject = {};
     const { foodName, category, page = 1 } = req.query;
@@ -35,7 +36,7 @@ router.get("/", async (req, res) => {
 });
 
 // Get a specific food
-router.get("/:id", async (req, res) => {
+router.get("/:id", verifyToken, async (req, res) => {
     // Search for that food in the database using its ID
     const food = await Food.findByPk(req.params.id);
     if (!food) {
@@ -49,7 +50,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Post a food
-router.post("/", async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
     const {
         food_name: food_name,
         category: category,
@@ -128,7 +129,7 @@ router.post("/", async (req, res) => {
 });
 
 // Edit a specific food
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyToken, async (req, res) => {
     // Search for that food in the database using its ID
     const food = await Food.findByPk(req.params.id);
     if (!food) {
@@ -207,7 +208,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // Delete a specific food
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
     // Search for that food in the database using its ID
     const food = await Food.findByPk(req.params.id);
     if (!food) {
@@ -225,7 +226,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 // Undo delete a food record
-router.put("/:id/undo", async (req, res) => {
+router.put("/:id/undo", verifyToken, async (req, res) => {
     // Search for that food in the database using its ID
     const food = await Food.findByPk(req.params.id, { paranoid: false });
     if (!food) {

@@ -2,9 +2,27 @@
 import express from "express";
 import Joi from "joi";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import User from "../models/user.js";
 
 const router = express.Router();
+
+// Create JWT Token
+function createToken(user) {
+    return jwt.sign(
+        {
+            id: user.user_id,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            mobile: user.mobile,
+            username: user.username,
+            email: user.email,
+            role: user.role,
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: process.env.JWT_EXPIRES_IN || "7d" },
+    );
+}
 
 // Register user
 router.post("/register", async (req, res) => {
@@ -42,8 +60,8 @@ router.post("/register", async (req, res) => {
         return;
     }
     // Check whethear this user with the given mobile number exists on the DB or not
-    const user = await User.findOne({ where: { mobile: regMobile } });
-    if (user) {
+    const existingUser = await User.findOne({ where: { mobile: regMobile } });
+    if (existingUser) {
         res.status(409).json({
             success: false,
             message: "This mobile number is already registered!",
@@ -55,8 +73,15 @@ router.post("/register", async (req, res) => {
         // It won't be visible in the response
         value.password = await bcrypt.hash(regPassword, 10);
         const user = await User.create(value);
-        const hiddenUserPassword = { ...user.toJSON(), password: "***" };
-        res.status(201).json(hiddenUserPassword);
+        const token = createToken(user);
+        const safeUser = user.toJSON();
+        delete safeUser.password;
+        res.status(201).json({
+            success: true,
+            message: "User registered successfully.",
+            token: token,
+            user: safeUser,
+        });
     } catch (error) {
         let errorMessage = error.message;
         if (error.error) {
@@ -98,9 +123,14 @@ router.post("/login", async (req, res) => {
         });
         return;
     }
+    const token = createToken(user);
+    const safeUser = user.toJSON();
+    delete safeUser.password;
     res.status(200).json({
         success: true,
-        message: "User ogged in.",
+        message: "User logged in.",
+        token: token,
+        user: safeUser,
     });
 });
 
