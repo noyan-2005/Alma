@@ -21,5 +21,5 @@ try:
     else:
         print(f"❌ Failed to create admin user!")
         print(response.json())
-except:
-    print("Oops! Error occured. Try again later.")
+except Exception as e:
+    print(f"Oops! Error occured. Try again later.\n{e}")

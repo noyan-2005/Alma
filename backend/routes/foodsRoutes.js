@@ -46,7 +46,10 @@ router.get("/:id", verifyToken, async (req, res) => {
         });
         return;
     }
-    res.status(200).json(food);
+    res.status(200).json({
+        success: true,
+        food: food,
+    });
 });
 
 // Post a food
@@ -194,7 +197,11 @@ router.put("/:id", verifyToken, async (req, res) => {
     }
     try {
         await food.update(value);
-        res.status(200).json(food);
+        res.status(200).json({
+        success: true,
+        message: "Food has been edited.",
+        food: food,
+    });
     } catch (error) {
         let errorMessage = error.message;
         if (error.error) {

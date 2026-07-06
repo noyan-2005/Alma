@@ -5,7 +5,7 @@ export function verifyToken(req, res, next) {
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
         return res.status(401).json({
             success: false,
-            message: "No token provided.",
+            message: "No token provided. Please login.",
         });
     }
     const token = authHeader.split(" ")[1];
@@ -16,7 +16,7 @@ export function verifyToken(req, res, next) {
     } catch (error) {
         return res.status(401).json({
             success: false,
-            message: "Invalid or expired token.",
+            message: "Invalid or expired token. Please login.",
         });
     }
 }

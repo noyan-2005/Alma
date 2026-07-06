@@ -9,11 +9,16 @@ const router = express.Router();
 
 // Get all users (admin only)
 router.get("/", verifyToken, async (req, res) => {
-    const allUsers = await User.findAll();
+    const allUsers = await User.findAll({
+        attributes: { exclude: ["password"] },
+    });
     res.status(200).json(allUsers);
 });
 
-// Get a specific user
+// Get a specific user (admin only)
+// ! NOTE: ONLY USERS THAT ARE LOGGED IN CAN USE THIS ROUTE. AND THEY CAN USE
+// ! THIS ROUTE ONLY AND ONLY IF THEY WANT TO SEE THEIR OWN PROFILE BY CLICKING
+// ! ON THE PROFILE BUTTON IN THE WEBSITE
 router.get("/:id", verifyToken, async (req, res) => {
     const user = await User.findByPk(req.params.id);
     if (!user) {
@@ -23,7 +28,12 @@ router.get("/:id", verifyToken, async (req, res) => {
         });
         return;
     }
-    res.status(200).json(user);
+    const safeUser = user.toJSON();
+    delete safeUser.password;
+    res.status(200).json({
+        success: true,
+        user: safeUser,
+    });
 });
 
 // Edit user info
@@ -72,8 +82,13 @@ router.put("/:id", verifyToken, async (req, res) => {
             value.password = await bcrypt.hash(newPassword, 10);
         }
         await user.update(value);
-        const hiddenUserPassword = { ...user.toJSON(), password: "***" };
-        res.status(200).json(hiddenUserPassword);
+        const safeUser = user.toJSON();
+        delete safeUser.password;
+        res.status(200).json({
+            success: true,
+            message: "User has been edited!",
+            user: safeUser,
+        });
     } catch (error) {
         let errorMessage = error.message;
         if (error.error) {
@@ -97,8 +112,13 @@ router.delete("/:id", verifyToken, async (req, res) => {
         return;
     }
     user.destroy();
-    const hiddenUserPassword = { ...user.toJSON(), password: "***" };
-    res.status(201).json(hiddenUserPassword);
+    const safeUser = user.toJSON();
+    delete safeUser.password;
+    res.status(201).json({
+        success: true,
+        message: "User has been deleted!",
+        user: safeUser,
+    });
 });
 
 export default router;
