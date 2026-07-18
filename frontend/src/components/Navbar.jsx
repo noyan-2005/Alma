@@ -1,22 +1,24 @@
+import "./../styles/navbar.css";
+
 const Navbar = () => {
     return (
-        <nav>
-            <div>
-                <h2>Alma</h2>
-            </div>
+        <header className="navbar">
+            <div className="navbar-container">
+                <a href="/" className="logo"> Alma </a>
 
-            <ul>
-                <li>Home</li>
-                <li>Features</li>
-                <li>About</li>
-                <li>Contact</li>
-            </ul>
+                <nav className="nav-links">
+                    <a href="#">Features</a>
+                    <a href="#">How it work</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">About</a>
+                </nav>
 
-            <div>
-                <button>Login</button>
-                <button>Get Started</button>
+                <div className="nav-actions">
+                    <button className="login-btn"> Login </button>
+                    <button className="primary-btn"> Get Started </button>
+                </div>
             </div>
-        </nav>
+        </header>
     );
 };
 
