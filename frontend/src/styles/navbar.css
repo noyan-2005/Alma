@@ -1,77 +1,129 @@
 .navbar {
     position: sticky;
     top: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.85);
-    /* backdrop-filter: blur(16px); */
-    border-bottom: 1px solid #e5e7eb;
     z-index: 1000;
+
+    width: 100%;
+    height: 72px;
+
+    background: rgba(255, 255, 255, 0.9);
+   
+    border-bottom: 1px solid #edf0f2;
 }
 
+/* ---------- navbar-container ---------- */
+
 .navbar-container {
-    max-width: 1280px;
-    height: 80px;
-
+    height: 100%;
+    
     margin: 0 auto;
-    padding: 0 32px;
-
+    padding: 0 60px;
+    
     display: flex;
     align-items: center;
     justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    text-decoration: none;
 }
 
-.logo {
-    text-decoration: none;
-    font-size: 28px;
-    font-weight: 700;
-    color: #111827;
+.navbar-container img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
 }
+
+.navbar-container span {
+    font-size: 2rem;
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -.5px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+/* ---------- Navigation ---------- */
 
 .nav-links {
     display: flex;
-    gap: 40px;
+    align-items: center;
+    gap: 36px;
 }
 
 .nav-links a {
     text-decoration: none;
     color: #4b5563;
+
+    font-size: 16px;
     font-weight: 500;
-    transition: .25s;
+
+    transition: .25s ease;
 }
 
 .nav-links a:hover {
-    color: #0cb826;
+    color: #22C55E;
 }
+
+/* ---------- Right Side ---------- */
 
 .nav-actions {
     display: flex;
+    align-items: center;
     gap: 16px;
 }
+
+/* ---------- Login ---------- */
 
 .login-btn {
     border: none;
     background: transparent;
+
     cursor: pointer;
 
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.primary-btn {
-    border: none;
-    cursor: pointer;
-
-    padding: 12px 22px;
-    border-radius: 999px;
-
-    background: #0ecb15;
-    color: white;
-
+    font-size: 16px;
     font-weight: 600;
+
+    color: #111827;
 
     transition: .25s;
 }
 
+.login-btn:hover {
+    color: #22C55E;
+}
+
+/* ---------- CTA ---------- */
+
+/* .primary-btn {
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+
+    padding: 13px 28px;
+
+    border-radius: 999px;
+
+    background: #22C55E;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    transition: .25s ease;
+} */
+
 .primary-btn:hover {
-    background: #098e2f;
+    background: #16A34A;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(34,197,94,.25);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
 }

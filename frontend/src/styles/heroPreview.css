@@ -1,0 +1,27 @@
+.hero-preview{
+    position:relative;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border: 1px solid #00000048;
+    border-radius: 20px;
+    box-shadow: 4px 10px 15px #0000002c;
+}
+
+.dashboard-preview{
+    width:100%;
+    max-width:760px;
+    border-radius:28px;
+    display:block;
+}
+
+.mobile-preview{
+    position:absolute;
+    width:150px;
+    right:-40px;
+    bottom:-30px;
+    border-radius: 25px;
+    box-shadow: 4px 10px 15px #0000002c;
+
+}

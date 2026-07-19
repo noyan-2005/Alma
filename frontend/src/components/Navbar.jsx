@@ -1,10 +1,16 @@
 import "./../styles/navbar.css";
+import Button from "./Button";
+import Logo from "../assets/icons/icon.png";
 
 const Navbar = () => {
     return (
         <header className="navbar">
             <div className="navbar-container">
-                <a href="/" className="logo"> Alma </a>
+                <div className="logo" >
+                    <img src={Logo} alt="Alma" />
+                    <span>Alma</span>
+                </div>
+                
 
                 <nav className="nav-links">
                     <a href="#">Features</a>
@@ -14,8 +20,13 @@ const Navbar = () => {
                 </nav>
 
                 <div className="nav-actions">
-                    <button className="login-btn"> Login </button>
-                    <button className="primary-btn"> Get Started </button>
+                    <Button variant="secondary">
+                        Login
+                    </Button>
+
+                    <Button>
+                        Get Started
+                    </Button>
                 </div>
             </div>
         </header>
