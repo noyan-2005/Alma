@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+  
 import "../styles/hero.css";
 
 import Badge from "./Badge";
@@ -13,15 +15,45 @@ const Hero = () => {
 
             <div className="hero-left">
 
-                <Badge />
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <Badge />
+                </motion.div>
 
-                <Heading />
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15, duration: 0.6 }}
+                >
+                    <Heading />
+                </motion.div>
 
-                <Description />
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.30, duration: 0.6 }}
+                >
+                    <Description />
+                </motion.div>
 
-                <HeroButtons />
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.45, duration: 0.6 }}
+                >
+                    <HeroButtons />
+                </motion.div>
 
-                <UserAvatars />
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.60, duration: 0.6 }}
+                >
+                    <UserAvatars />
+                </motion.div>
 
             </div>
 

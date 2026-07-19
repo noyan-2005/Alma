@@ -4,8 +4,8 @@
     display:flex;
     justify-content:center;
     align-items:center;
-    border: 1px solid #00000048;
     border-radius: 20px;
+    border: 1px solid #00000048;
     box-shadow: 4px 10px 15px #0000002c;
 }
 
