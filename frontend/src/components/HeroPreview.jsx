@@ -26,7 +26,7 @@ const HeroPreview = () => {
 
                 initial={{ opacity: 0, x: 120, scale: 0.9 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ delay: 0.35, type: "spring", stiffness: 80, damping: 18}}
+                transition={{ delay: 0.35, type: "spring", stiffness: 50, damping: 18}}
             />
 
 
