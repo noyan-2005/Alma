@@ -12,6 +12,11 @@ body{
     font-family:'Plus Jakarta Sans',sans-serif;
     background:#fff;
     color:#111827;
+    /* prevent selection */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 a{
@@ -35,13 +40,6 @@ ul{
 /* ========================================= */
 /*          Floating Glass Scrollbar         */
 /* ========================================= */
-
-html{
-
-    scrollbar-width: thin;
-    scrollbar-color: rgba(34,197,94,.75) transparent;
-
-}
 
 ::-webkit-scrollbar{
 
