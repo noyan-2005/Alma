@@ -13,28 +13,20 @@ const FeatureCard = ({ feature, stage, index }) => {
             initial={false}
             animate={{
                 opacity: stage >= 2 ? 1 : 0,
-                x: stage >= 2 ? 0 : isLeft ? -80 : 80,
+                x: stage >= 2 ? 0 : 0,
                 scale: stage >= 2 ? 1 : 0.96,
             }}
             transition={{
-                duration: 0.6,
-                delay: stage >= 2 ? index * 0.12 : 0,
+                duration: 0.1,
                 ease: [0.4, 0, 0.2, 1],
             }}
             whileHover={{
-                y: -10,
+                y: -5,
                 scale: 1.03,
             }}
         >
             <motion.div
                 className="feature-icon"
-                whileHover={{
-                    rotate: 10,
-                    scale: 1.12,
-                }}
-                transition={{
-                    duration: 0.25,
-                }}
             >
                 <Icon size={28} />
             </motion.div>
