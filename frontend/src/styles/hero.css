@@ -9,9 +9,7 @@
     align-items:center;
     gap:80px;
 
-
     padding:40px 40px;
-    padding-top: 120px;
 }
 
 .hero-left{
@@ -20,17 +18,23 @@
 
 .hero-right{
     flex:1;
+
     display:flex;
     justify-content:center;
 }
 
 .preview{
+
     position:relative;
+
 }
 
 .dashboard{
+
     width:100%;
+
     border-radius:30px;
+
 }
 
 .phone{

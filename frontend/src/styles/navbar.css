@@ -1,361 +1,129 @@
-/* ===========================
-   Navbar
-=========================== */
-
 .navbar {
-
-    position: fixed;
-
-    top: 22px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: min(1330px, calc(100% - 40px));
-
-    height: 74px;
-
-    border-radius: 24px;
-
-    background: rgba(255,255,255,.55);
-
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-
-    border: 1px solid rgba(255,255,255,.55);
-
-    box-shadow:
-        0 12px 40px rgba(15,23,42,.08),
-        inset 0 1px rgba(255,255,255,.65);
-
+    position: sticky;
+    top: 0;
     z-index: 1000;
 
-    transition:
-        background .35s ease,
-        box-shadow .35s ease,
-        top .35s ease,
-        transform .35s ease,
-        border-color .35s ease;
+    width: 100%;
+    height: 72px;
 
-    overflow: hidden;
-
+    background: rgba(255, 255, 255, 0.9);
+   
+    border-bottom: 1px solid #edf0f2;
 }
 
-/* Glow */
+/* ---------- navbar-container ---------- */
 
-.navbar::before{
+.navbar-container {
+    height: 100%;
+    
+    margin: 0 auto;
+    padding: 0 60px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
 
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    border-radius:inherit;
-
-    background:
-
-        radial-gradient(circle at 15% 20%,
-        rgba(34,197,94,.10),
-        transparent 40%),
-
-        radial-gradient(circle at 85% 80%,
-        rgba(34,197,94,.08),
-        transparent 35%);
-
-    pointer-events:none;
-
+    text-decoration: none;
 }
 
-/* Hover */
-
-.navbar:hover{
-
-    transform:translateX(-50%) translateY(-2px);
-
-    box-shadow:
-
-        0 18px 48px rgba(15,23,42,.14),
-
-        inset 0 1px rgba(255,255,255,.75);
-
+.navbar-container img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
 }
 
-/* Scroll */
-
-.navbar.scrolled{
-
-    top:14px;
-
-    background:rgba(255,255,255,.72);
-
-    backdrop-filter:blur(24px);
-    -webkit-backdrop-filter:blur(24px);
-
-    border-color:rgba(255,255,255,.7);
-
-    box-shadow:
-
-        0 18px 50px rgba(15,23,42,.16),
-
-        inset 0 1px rgba(255,255,255,.8);
-
+.navbar-container span {
+    font-size: 2rem;
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -.5px;
 }
-
-
-/* ===========================
-   Container
-=========================== */
-
-.navbar-container{
-
-    position:relative;
-
-    z-index:2;
-
-    width:100%;
-    height:100%;
-
-    padding:0 34px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-}
-
-
-/* ===========================
-   Logo
-=========================== */
 
 .logo{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    text-decoration:none;
-
-    flex-shrink:0;
-
+    display: flex;
+    align-items: center;
 }
 
-.logo img{
+/* ---------- Navigation ---------- */
 
-    width:44px;
-
-    height:44px;
-
-    object-fit:contain;
-
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
 }
 
-.logo span{
+.nav-links a {
+    text-decoration: none;
+    color: #4b5563;
 
-    font-size:2rem;
+    font-size: 16px;
+    font-weight: 500;
 
-    font-family:"Poppins",serif;
-
-    font-weight:600;
-
-    color:#263238;
-
-    letter-spacing:-.6px;
-
+    transition: .25s ease;
 }
 
-
-/* ===========================
-   Navigation
-=========================== */
-
-.nav-links{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:44px;
-
+.nav-links a:hover {
+    color: #22C55E;
 }
 
-.nav-links a{
+/* ---------- Right Side ---------- */
 
-    position:relative;
-
-    text-decoration:none;
-
-    color:#475569;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    transition:.3s;
-
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
-.nav-links a::after{
+/* ---------- Login ---------- */
 
-    content:"";
+.login-btn {
+    border: none;
+    background: transparent;
 
-    position:absolute;
+    cursor: pointer;
 
-    left:0;
+    font-size: 16px;
+    font-weight: 600;
 
-    bottom:-8px;
+    color: #111827;
 
-    width:0;
-
-    height:2px;
-
-    border-radius:999px;
-
-    background:#22C55E;
-
-    transition:.3s;
-
+    transition: .25s;
 }
 
-.nav-links a:hover{
-
-    color:#22C55E;
-
+.login-btn:hover {
+    color: #22C55E;
 }
 
-.nav-links a:hover::after{
+/* ---------- CTA ---------- */
 
-    width:100%;
+/* .primary-btn {
+    border: none;
+    outline: none;
 
+    cursor: pointer;
+
+    padding: 13px 28px;
+
+    border-radius: 999px;
+
+    background: #22C55E;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    transition: .25s ease;
+} */
+
+.primary-btn:hover {
+    background: #16A34A;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(34,197,94,.25);
 }
 
-
-/* ===========================
-   Actions
-=========================== */
-
-.nav-actions{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    flex-shrink:0;
-
-}
-
-
-/* ===========================
-   Login
-=========================== */
-
-.login-btn{
-
-    height:46px;
-
-    padding:0 22px;
-
-    border-radius:999px;
-
-    border:1px solid rgba(15,23,42,.10);
-
-    background:rgba(255,255,255,.45);
-
-    -webkit-backdrop-filter:blur(10px);
-
-    cursor:pointer;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    color:#334155;
-
-    transition:.3s;
-
-}
-
-.login-btn:hover{
-
-    background:#fff;
-
-    transform:translateY(-2px);
-
-    box-shadow:0 10px 24px rgba(0,0,0,.08);
-
-}
-
-
-/* ===========================
-   CTA
-=========================== */
-
-.primary-btn{
-
-    height:46px;
-
-    padding:0 28px;
-
-    border:none;
-
-    border-radius:999px;
-
-    cursor:pointer;
-
-    background:linear-gradient(135deg,#22C55E,#16A34A);
-
-    color:#fff;
-
-    font-size:15px;
-
-    font-weight:700;
-
-    transition:.3s;
-
-    box-shadow:
-
-        0 10px 24px rgba(34,197,94,.28);
-
-}
-
-.primary-btn:hover{
-
-    transform:translateY(-2px);
-
-    box-shadow:
-
-        0 18px 36px rgba(34,197,94,.35);
-
-}
-
-
-/* ===========================
-   Responsive
-=========================== */
-
-@media (max-width:1024px){
-
-    .nav-links{
-
-        gap:28px;
-
-    }
-
-}
-
-@media (max-width:860px){
-
-    .nav-links{
-
-        display:none;
-
-    }
-
+.primary-btn:active {
+    transform: translateY(0);
 }
