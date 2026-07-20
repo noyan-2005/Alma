@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-  
+
 import "../styles/hero.css";
 
 import Badge from "./Badge";
@@ -9,10 +9,22 @@ import HeroButtons from "./HeroButtons";
 import UserAvatars from "./UserAvatars";
 import HeroPreview from "./HeroPreview";
 
-const Hero = () => {
+const Hero = ({ stage }) => {
     return (
-        <section className="hero">
-
+        <motion.section
+            className="hero"
+            animate={{
+                opacity: stage >= 1 ? 0 : 1,
+                scale: stage >= 1 ? 0.96 : 1,
+                y: stage >= 1 ? -30 : 0,
+                filter: stage >= 1 ? "blur(12px)" : "blur(0px)",
+                pointerEvents: stage >= 1 ? "none" : "auto",
+            }}
+            transition={{
+                duration: 0.8,
+                ease: [0.4, 0, 0.2, 1],
+            }}
+        >
             <div className="hero-left">
 
                 <motion.div
@@ -58,12 +70,10 @@ const Hero = () => {
             </div>
 
             <div className="hero-right">
-
-            <HeroPreview />
-
+                <HeroPreview />
             </div>
 
-        </section>
+        </motion.section>
     );
 };
 

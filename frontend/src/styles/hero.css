@@ -7,6 +7,10 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    
     gap:80px;
 
     padding:40px 40px;
