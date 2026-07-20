@@ -47,7 +47,7 @@ const QuestionSection = ({ stage }) => {
                     className="features-grid"
                     initial={false}
                     animate={{
-                        opacity: stage >= 2 ? 1 : 0,
+                        opacity: stage >= 1 ? 1 : 0,
                         y: stage >= 2 ? 0 : 80,
                     }}
                     transition={{
