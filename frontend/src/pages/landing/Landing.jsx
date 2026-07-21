@@ -6,7 +6,7 @@ import QuestionSection from "../../components/QuestionSection";
 
 import "../../styles/ScrollScene.css";
 
-const MAX_STAGE = 4;
+const MAX_STAGE = 3;
 
 const Landing = () => {
     const [stage, setStage] = useState(0);

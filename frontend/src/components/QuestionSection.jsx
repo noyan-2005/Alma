@@ -7,7 +7,12 @@ import "../styles/questionSection.css";
 
 const QuestionSection = ({ stage }) => {
     return (
-        <section className="question-section">
+        <section 
+            className="question-section" 
+            style={{
+                pointerEvents: stage >= 1 ? "auto" : "none",
+            }}
+        >
 
             <motion.div
                 className={`question-wrapper ${
@@ -53,6 +58,10 @@ const QuestionSection = ({ stage }) => {
                     transition={{
                         duration: .55,
                         delay: stage >= 2 ? .15 : 0,
+                    }}
+                    style={{
+                        pointerEvents: stage >= 2 ? "auto" : "none",
+                        visibility: stage >= 2 ? "visible" : "hidden",
                     }}
                 >
                     {features.map((feature, index) => (
