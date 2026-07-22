@@ -21,7 +21,10 @@ const QuestionSection = ({ stage }) => {
                 layout
                 transition={{
                     duration: 0.8,
-                    ease: [0.4, 0, 0.2, 1],
+                    ease: ["linear"],
+                }}
+                animate={{
+                    opacity: stage < 3 ? 1 : 0, 
                 }}
             >
 
@@ -32,10 +35,14 @@ const QuestionSection = ({ stage }) => {
                     initial={false}
                     animate={{
                         opacity: stage >= 1 ? 1 : 0,
-                        scale: stage >= 2 ? .85 : 1,
+
+                        scale: stage >= 2 ? 0.85 : 1,
+
+                        y: stage >= 2 ? -5 : 200,
                     }}
                     transition={{
-                        duration: .6,
+                        duration: 0,
+                        ease: ["linear"],
                     }}
                 >
                     <h2>Why Alma?</h2>

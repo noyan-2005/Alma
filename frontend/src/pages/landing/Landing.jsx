@@ -3,43 +3,17 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import Hero from "../../components/Hero";
 import QuestionSection from "../../components/QuestionSection";
+import HowItWorksSection from "../../components/HowItWorksSection";
+import useStageController from "../../hooks/useStageController";
 
 import "../../styles/ScrollScene.css";
 
-const MAX_STAGE = 3;
+const MAX_STAGE = 6 ;
 
 const Landing = () => {
-    const [stage, setStage] = useState(0);
-    const [isAnimating, setIsAnimating] = useState(false);
 
-    useEffect(() => {
-        const handleWheel = (e) => {
-            e.preventDefault();
-
-            if (isAnimating) return;
-
-            setIsAnimating(true);
-
-            if (e.deltaY > 0) {
-                setStage((prev) => Math.min(prev + 1, MAX_STAGE));
-            } else if (e.deltaY < 0) {
-                setStage((prev) => Math.max(prev - 1, 0));
-            }
-
-            setTimeout(() => {
-                setIsAnimating(false);
-            }, 700);
-        };
-
-        window.addEventListener("wheel", handleWheel, {
-            passive: false,
-        });
-
-        return () => {
-            window.removeEventListener("wheel", handleWheel);
-        };
-    }, [isAnimating]);
-
+    const { stage } = useStageController(MAX_STAGE);
+ 
     return (
         <div
             className={`landing ${
@@ -52,6 +26,9 @@ const Landing = () => {
                 <Hero stage={stage} />
 
                 <QuestionSection stage={stage} />
+
+                <HowItWorksSection stage={stage} />
+
             </div>
         </div>
     );

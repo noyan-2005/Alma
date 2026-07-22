@@ -18,7 +18,7 @@ const FeatureCard = ({ feature, stage, index }) => {
             }}
             transition={{
                 duration: 0.1,
-                ease: [0.4, 0, 0.2, 1],
+                ease: ["linear"],
             }}
             whileHover={{
                 y: -5,
