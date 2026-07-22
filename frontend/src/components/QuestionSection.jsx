@@ -7,11 +7,13 @@ import "../styles/questionSection.css";
 
 const QuestionSection = ({ stage }) => {
     return (
-        <section 
-            className="question-section" 
+        <motion.section
+            className="question-section"
             style={{
-                pointerEvents: stage >= 1 ? "auto" : "none",
+                pointerEvents: stage >= 1 && stage < 7 ? "auto" : "none",
+                visibility: stage >= 1 && stage < 7 ? "visible" : "hidden",
             }}
+            
         >
 
             <motion.div
@@ -83,7 +85,7 @@ const QuestionSection = ({ stage }) => {
 
             </motion.div>
 
-        </section>
+        </motion.section>
     );
 };
 

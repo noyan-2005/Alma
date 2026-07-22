@@ -5,10 +5,11 @@ import Hero from "../../components/Hero";
 import QuestionSection from "../../components/QuestionSection";
 import HowItWorksSection from "../../components/HowItWorksSection";
 import useStageController from "../../hooks/useStageController";
+import DashboardPreview from "../../components/DashboardPreview";
 
 import "../../styles/ScrollScene.css";
 
-const MAX_STAGE = 6 ;
+const MAX_STAGE = 7 ;
 
 const Landing = () => {
 
@@ -28,6 +29,8 @@ const Landing = () => {
                 <QuestionSection stage={stage} />
 
                 <HowItWorksSection stage={stage} />
+
+                <DashboardPreview stage={stage} />
 
             </div>
         </div>
