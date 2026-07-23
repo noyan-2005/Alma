@@ -14,8 +14,8 @@ const DashboardPreview = ({stage}) => {
             initial={false}
             animate={{
                 opacity: stage >= 7 ? 1 : 0,
-                x: stage >= 7 ? 0 : -200,
-                y: stage >= 7 ? 70 : 70,
+                x: stage >= 7 ? 0 : 0,
+                y: stage >= 7 ? 130 : 0,
                 scale: stage >= 7 ? 1 : 0.97,
             }}
             transition={{

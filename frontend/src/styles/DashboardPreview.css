@@ -11,8 +11,6 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 80px;
-
-    padding: 80px 32px;
 }
 
 /* ---------- Dashboard Image ---------- */
@@ -29,7 +27,6 @@ body {
 
 .dashboard-image {
     width: 100%;
-    max-width: 760px;
     height: auto;
     display: block;
     border-radius: 30px;
